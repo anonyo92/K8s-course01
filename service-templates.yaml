@@ -9,7 +9,6 @@ spec:
     #   external users to connect to (Eg: browser)
     selector: # all these key-val pairs must match some pods' labels
         app: webapp
-        release: "0-5"
 
     # ClusterIP type services are accessible only within the cluster;
     # NodePort type services are discoverable outside the cluster as well,
