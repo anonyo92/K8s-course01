@@ -32,7 +32,6 @@ spec:
     #   external users to connect to (Eg: browser)
     selector: # all these key-val pairs must match some pods' labels
         app: queue
-        release: "1"
 
     # ClusterIP type services are accessible only within the cluster;
     # NodePort type services are discoverable outside the cluster as well,
