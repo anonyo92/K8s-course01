@@ -42,4 +42,5 @@ spec:
     ports:
     -   name: http
         port: 8161
+        # target ports are defaulted to ports, hence not specifying
         nodePort: 30010 # must be greater than 30000
