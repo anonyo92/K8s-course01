@@ -44,3 +44,53 @@ spec:
         port: 8161
         # target ports are defaulted to ports, hence not specifying
         nodePort: 30010 # must be greater than 30000
+
+    -   name: endpoint
+        port: 61616
+        # target ports are defaulted to ports, hence not specifying
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: fleetman-position-tracker
+
+spec:
+    # This defines which pods are going to be represented by this service.
+    # The service becomes a network endpoint for either other services or
+    #   external users to connect to (Eg: browser)
+    selector: # all these key-val pairs must match some pods' labels
+        app: position-tracker
+
+    # ClusterIP type services are accessible only within the cluster;
+    # NodePort type services are discoverable outside the cluster as well,
+    #   by way of the chosen exposed port.
+    type: ClusterIP
+
+    ports:
+    -   name: http
+        port: 8080
+        # target ports are defaulted to ports, hence not specifying
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: fleetman-api-gateway
+
+spec:
+    # This defines which pods are going to be represented by this service.
+    # The service becomes a network endpoint for either other services or
+    #   external users to connect to (Eg: browser)
+    selector: # all these key-val pairs must match some pods' labels
+        app: api-gateway
+
+    # ClusterIP type services are accessible only within the cluster;
+    # NodePort type services are discoverable outside the cluster as well,
+    #   by way of the chosen exposed port.
+    type: ClusterIP
+
+    ports:
+    -   name: http
+        port: 8080
+        # target ports are defaulted to ports, hence not specifying
