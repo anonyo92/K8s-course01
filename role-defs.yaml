@@ -1,13 +1,43 @@
-# Role defines a set of privileges for a type of user-role
+# ClusterRole defines a set of privileges for a type of user-role cluster-wide
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+    name: new-joiner-ClusterRole
+rules:
+-   apiGroups: ["", "apps", "autoscaling"] # Kubernetes API scope of rules
+    resources: ["*"] # all resources (in the above namespace)
+    verbs: ["get", "list", "watch"] # actions allowed for this role
+    # verb names match the corresponding Kubernetes API requests
+
+---
+# ClusterRoleBinding allocates or "binds" users to ClusterRoles
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+    name: new-joiner-ClusterRoleBinding
+subjects:
+    # list all of the users going into this role
+-   kind: User
+    name: anpalit
+-   kind: User
+    name: Ananya
+
+roleRef:
+    kind: ClusterRole
+    name: new-joiner-ClusterRole
+    apiGroup: rbac.authorization.k8s.io
+
+---
+# Role defines a set of privileges for a type of user-role per namespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
     name: new-joiner-role
-    namespace: default # Role-rules are always namespaced
+    namespace: anpalit
 rules:
--   apiGroups: ["", "apps", "autoscaling"] # Kubernetes API scope of rules - core and apps groups here
+-   apiGroups: ["", "apps"] # Kubernetes API scope of rules
     resources: ["*"] # all resources (in the above namespace)
-    verbs: ["get", "list", "watch"] # actions allowed for this role
+    verbs: ["*"] # actions allowed for this role
     # verb names match the corresponding Kubernetes API requests
 
 ---
@@ -15,8 +45,8 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-    name: new-joiner
-    namespace: default
+    name: new-joiner-RoleBinding
+    namespace: anpalit
 subjects:
     # list all of the users going into this role
 -   kind: User
