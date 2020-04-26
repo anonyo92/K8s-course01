@@ -23,9 +23,15 @@ spec:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
                 -   name: DATABASE_URL
-                    value: https://some-server.com:3306
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.url
                 -   name: DATABASE_PASSWORD
-                    value: p@ssw0rd
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.password
 
 ---
 apiVersion: apps/v1
@@ -53,9 +59,16 @@ spec:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
                 -   name: DATABASE_URL
-                    value: https://some-server.com:3306
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.url
                 -   name: DATABASE_PASSWORD
-                    value: p@ssw0rd
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.password
+
 
 ---
 apiVersion: apps/v1
@@ -83,6 +96,12 @@ spec:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
                 -   name: DATABASE_URL
-                    value: https://some-server.com:3306
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.url
                 -   name: DATABASE_PASSWORD
-                    value: p@ssw0rd
+                    valueFrom:
+                        configMapKeyRef:
+                            name: global-db-config-1
+                            key: database.password
