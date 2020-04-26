@@ -25,12 +25,12 @@ spec:
                 -   name: DATABASE_URL
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.url
                 -   name: DATABASE_PASSWORD
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.password
 
 ---
@@ -61,12 +61,12 @@ spec:
                 -   name: DATABASE_URL
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.url
                 -   name: DATABASE_PASSWORD
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.password
 
 
@@ -98,10 +98,10 @@ spec:
                 -   name: DATABASE_URL
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.url
                 -   name: DATABASE_PASSWORD
                     valueFrom:
                         configMapKeyRef:
-                            name: global-db-config-1
+                            name: global-db-config-2
                             key: database.password
