@@ -30,7 +30,9 @@ spec:
                 configMap:
                     # each configMap var will be available as a separate file within
                     # the specified directory (the directory will be created if needed)
-                    name: global-db-config-2
+                    name: global-db-config-4
+                    # edited the vars in this yaml to appear as lines within a
+                    # single file (need to be read by the container app appropriately)
 ---
 apiVersion: apps/v1
 kind: Deployment
