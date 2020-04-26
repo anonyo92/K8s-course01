@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: position-simulator
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: position-simulator
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: position-simulator
+            labels:
+                app: position-simulator
+        spec:
+            containers:
+            -   name: position-simulator-container01
+                image: richardchesterwood/k8s-fleetman-position-simulator:release2
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                -   name: DATABASE_URL
+                    value: https://some-server.com:3306
+                -   name: DATABASE_PASSWORD
+                    value: p@ssw0rd
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: position-tracker
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: position-tracker
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: position-tracker
+            labels:
+                app: position-tracker
+        spec:
+            containers:
+            -   name: position-tracker-container01
+                image: richardchesterwood/k8s-fleetman-position-tracker:release3
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                -   name: DATABASE_URL
+                    value: https://some-server.com:3306
+                -   name: DATABASE_PASSWORD
+                    value: p@ssw0rd
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-gateway
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: api-gateway
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: api-gateway
+            labels:
+                app: api-gateway
+        spec:
+            containers:
+            -   name: api-gateway-container01
+                image: richardchesterwood/k8s-fleetman-api-gateway:release2
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                -   name: DATABASE_URL
+                    value: https://some-server.com:3306
+                -   name: DATABASE_PASSWORD
+                    value: p@ssw0rd
