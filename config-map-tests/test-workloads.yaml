@@ -22,16 +22,9 @@ spec:
                 env:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
-                -   name: DATABASE_URL
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.url
-                -   name: DATABASE_PASSWORD
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.password
+                envFrom:
+                -   configMapRef:
+                        name: global-db-config-3
 
 ---
 apiVersion: apps/v1
@@ -58,16 +51,9 @@ spec:
                 env:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
-                -   name: DATABASE_URL
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.url
-                -   name: DATABASE_PASSWORD
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.password
+                envFrom:
+                -   configMapRef:
+                        name: global-db-config-3
 
 
 ---
@@ -95,13 +81,6 @@ spec:
                 env:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
-                -   name: DATABASE_URL
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.url
-                -   name: DATABASE_PASSWORD
-                    valueFrom:
-                        configMapKeyRef:
-                            name: global-db-config-2
-                            key: database.password
+                envFrom:
+                -   configMapRef:
+                        name: global-db-config-3

@@ -16,3 +16,13 @@ metadata:
 data:
     database.url: "https://mysql.production.com:3306"
     database.password: "p@ssw0rd"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: global-db-config-3
+    namespace: default
+data:
+    DATABASE_URL: "https://mysql.stage.com:3306"
+    DATABASE_PASSWORD: "p@ssw0rd"
