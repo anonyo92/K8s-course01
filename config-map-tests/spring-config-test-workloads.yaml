@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: position-simulator
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: position-simulator
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: position-simulator
+            labels:
+                app: position-simulator
+        spec:
+            containers:
+            -   name: position-simulator-container01
+                image: richardchesterwood/k8s-fleetman-position-simulator:configmapsdemo
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                volumeMounts:
+                -   name: db-config-volume
+                    mountPath: /etc/somerandom/directory/config # need not exist
+            volumes:
+            -   name: db-config-volume # need to match the volumeMount's name
+                configMap:
+                    # each configMap var will be available as a separate file within
+                    # the specified directory (the directory will be created if needed)
+                    name: global-db-config-4
+                    # edited the vars in this yaml to appear as lines within a
+                    # single file (need to be read by the container app appropriately)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: position-tracker
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: position-tracker
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: position-tracker
+            labels:
+                app: position-tracker
+        spec:
+            containers:
+            -   name: position-tracker-container01
+                image: richardchesterwood/k8s-fleetman-position-tracker:configmapsdemo
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                envFrom:
+                -   configMapRef:
+                        name: global-db-config-3

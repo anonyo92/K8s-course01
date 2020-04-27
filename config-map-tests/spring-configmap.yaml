@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: global-queue-config
+    namespace: default
+data:
+    fleetman.position.queue: positionQueue-changed1
