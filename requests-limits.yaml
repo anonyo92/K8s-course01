@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: queue
+spec:
+    selector:
+        matchLabels:
+            app: queue
+    replicas: 1
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: queue-release1
+            labels:
+                app: queue
+        spec:
+            containers:
+            -   name: queue-container01
+                image: richardchesterwood/k8s-fleetman-queue:release2
+                resources:
+                    requests:
+                        memory: 300Mi
+                        cpu: 100m
+                    limits:
+                        memory: 500Mi
+                        cpu: 100m
