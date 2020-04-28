@@ -19,6 +19,10 @@ spec:
             containers:
             -   name: mongodb-container01
                 image: mongo:3.6.5-jessie
+                resources:
+                    requests:
+                        memory: 500Mi
+                        cpu: 250m
                 volumeMounts:
                 -   name: mongodb-persistent-storage
                     mountPath: /data/db
