@@ -1,0 +1,5 @@
+https:// <<Bootstrap instance LoadBalancer DNS URL>> /api/v1/namespaces/monitoring/services/alertmanager-operated:9093/proxy/
+
+# check the kube config (using kubectl config view --minify) to verify the credentials
+Username: admin
+Password: <will be present in the kubectl config>

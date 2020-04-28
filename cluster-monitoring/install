@@ -1,0 +1,2 @@
+use helm to install stable/prometheus-operator (name as monitoring) into a separate namespace (say cluster-monitoring)
+prometheus-operator comes with prometheus, grafana and alertmanager packaged together.
