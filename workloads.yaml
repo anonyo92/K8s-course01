@@ -90,7 +90,7 @@ kind: Deployment
 metadata:
     name: api-gateway
 spec:
-    minReadySeconds: 30
+    # minReadySeconds: 30
     selector:
         matchLabels:
             app: api-gateway
@@ -105,10 +105,15 @@ spec:
         spec:
             containers:
             -   name: api-gateway-container01
-                image: richardchesterwood/k8s-fleetman-api-gateway:resources
+                image: richardchesterwood/k8s-fleetman-api-gateway:performance
                 env:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
+                readinessProbe:
+                    # can also have an 'exec' here for non http servers
+                    httpGet:
+                        path: / # the "/api" is removed when the request is forwarded to the gateway 
+                        port: 8080
                 resources:
                     requests:
                         memory: 300Mi
