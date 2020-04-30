@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: webapp
+spec:
+    minReadySeconds: 30
+    selector:
+        matchLabels:
+            app: webapp
+    template:
+        metadata:
+            # pod name is not needed anymore, as the RS by its own will
+            # name the pod - the RS' own name with a random string appended.
+            #name: webapp
+            labels:
+                app: webapp
+        spec:
+            containers:
+            -   name: webapp-container01
+                image: richardchesterwood/k8s-fleetman-webapp-angular:release2
+                env:
+                -   name: SPRING_PROFILES_ACTIVE
+                    value: production-microservice
+                resources:
+                    requests:
+                        memory: 100Mi
+                        cpu: 50m
