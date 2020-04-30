@@ -78,14 +78,10 @@ spec:
         spec:
             containers:
             -   name: position-tracker-container01
-                image: richardchesterwood/k8s-fleetman-position-tracker:resources
+                image: richardchesterwood/k8s-fleetman-position-tracker:release4
                 env:
                 -   name: SPRING_PROFILES_ACTIVE
                     value: production-microservice
-                resources:
-                    requests:
-                        memory: 300Mi
-                        cpu: 100m
 
 ---
 apiVersion: apps/v1
