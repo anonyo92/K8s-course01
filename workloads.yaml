@@ -53,6 +53,9 @@ spec:
                     requests:
                         memory: 250Mi
                         cpu: 100m
+                    limits:
+                        memory: 250Mi
+                        cpu: 100m
 
 ---
 apiVersion: apps/v1
