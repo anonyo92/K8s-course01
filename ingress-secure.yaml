@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: secure-routing
+    annotations:
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/auth-secret: ingress-basic-auth
+        nginx.ingress.kubernetes.io/auth-realm: "You must provide a proper password"
+spec:
+    rules:
+    -   host: queue.apalit-k8s-course01.com
+        http:
+            paths:
+            -   path: /
+                backend:
+                    serviceName: fleetman-queue
+                    servicePort: 8161
