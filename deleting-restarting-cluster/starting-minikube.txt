@@ -1,0 +1,28 @@
+Step 1: Install a hypervisor like Oracle VirtualBox, VMware Workstation or enable Hyper-V on Windows 10+
+    [Virtualbox][VMware Workstation]
+    # Enable VT-x is enabled in your BIOS
+    # Install Oracle VirtualBox or VMware Workstation
+
+    [Hyper-V] -- Windows 10+
+    # Enable Hyper-V
+    # Create/Configure a Virtual Switch from the Hyper-V Manager (note the switch's name)
+
+Step 2: Install minikube
+    # Follow the instructions on the official website
+
+Step 3: Start minikube
+    [Virtualbox]
+        > minikube start --driver=virtualbox --memory=4096
+    [Hyper-V]
+    # If this is intended to be a fresh start, 
+    # ensure no other minikube VM is left over in Hyper-V from any previous runs
+        > minikube start --driver=hyperv --hyperv-virtual-switch=<your v-switch name> --memory=4096
+
+    # you can set the default configs in the global minikube config to avoid typing them on every (re)start, like:
+        > minikube config set memory 4096
+        > minikube config set memory 4096
+
+    [Docker-Desktop]
+    # Start Docker Desktop (on a hypervisor of choice - Virtualbox/VMware Workstation/Hyper-V)
+    # Start minikube (after ensuring that DockerDesktop is running as a VM on the hypervisor):
+        > minikube start --driver=docker --memory=4096

@@ -1,0 +1,3 @@
+minikube delete
+rm -rf ~/.kube
+rm -rf ~/.minikube

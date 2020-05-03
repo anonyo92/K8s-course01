@@ -1,0 +1,5 @@
+# In bootstrap instance, run:
+    > kops delete cluster --name ${CLUSTER_NAME_ENV_VAR} --yes
+# Make sure to let this command finish running
+# At the end, you'll be left with only the kops bootstrap instance and its volume
+# You can rebuild the cluster off this instance again

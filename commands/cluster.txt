@@ -1,0 +1,16 @@
+[Cluster-config]
+minikube config view                    : View the default config for minikube cluster
+minikube config get <key>               : Get the default value for a key (like memory) from the cluster config
+minikube config set <key> <value>       : Set the default value for a key (like memory) from the cluster config
+
+minikube ip                             : gets the ip of the cluster
+
+minikube dashboard                      : opens a GUI dashboard of the cluster
+minikube addons list                    : lists addons for the cluster
+minikube addons enable <addon-name>     : enables an addon
+minikube addons disable <addon-name>    : disables an addon
+
+kubectl describe node minikube          : describes a cluster-node (includes requests/limits info of each pod)
+[If metrics-server addon is enabled]
+kubectl top node                        : describes the resource (memory/cpu) usage of the nodes
+kubectl top pod                         : describes the resource (memory/cpu) usage of the pods (namespaced)

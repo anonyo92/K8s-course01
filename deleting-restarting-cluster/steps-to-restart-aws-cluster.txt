@@ -1,0 +1,8 @@
+1. ssh into kops-bootstrap instance
+2. export the ENV vars: CLUSTERNAME, KOPS_STATE_STORE (if not in your .bashrc)
+3. kops create cluster --zones <az-list> ${CLUSTERNAME}
+4. Edit the instance-groups to specify replication, etc. : kops edit ig --name ${CLUSTERNAME}
+5. Create the cluster : kops update cluster --name  ${CLUSTERNAME} --yes
+6. kops validate cluster
+
+7. Re-deploy all the workloads
